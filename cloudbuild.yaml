@@ -1,0 +1,12 @@
+steps:
+  # build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/workshops-code/hello-cloud-run', '.']
+  # push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/workshops-code/hello-cloud-run']
+  # deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'hello-cloudrun', '--image', 'gcr.io/workshops-code/hello-cloud-run', '--region', 'us-central1']
+images:
+- gcr.io/workshops-code/hello-cloud-run
