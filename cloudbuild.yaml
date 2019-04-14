@@ -7,6 +7,8 @@ steps:
   args: ['push', 'gcr.io/workshops-code/hello-cloud-run']
   # deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'hello-cloudrun', '--image', 'gcr.io/workshops-code/hello-cloud-run', '--region', 'us-central1']
+  args: ['beta', 'run', 'deploy', 'hello-cloud-run', '--image', 'gcr.io/workshops-code/hello-cloud-run', '--region', 'us-central1']
+  env:
+  - 'PORT=8080'
 images:
 - gcr.io/workshops-code/hello-cloud-run
